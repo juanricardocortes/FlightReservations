@@ -1,0 +1,14 @@
+C:\Users\jcortes\Desktop\FlightReservations\src\main\bin\Debug\netcoreapp2.1\main.deps.json
+C:\Users\jcortes\Desktop\FlightReservations\src\main\bin\Debug\netcoreapp2.1\main.runtimeconfig.json
+C:\Users\jcortes\Desktop\FlightReservations\src\main\bin\Debug\netcoreapp2.1\main.runtimeconfig.dev.json
+C:\Users\jcortes\Desktop\FlightReservations\src\main\bin\Debug\netcoreapp2.1\main.dll
+C:\Users\jcortes\Desktop\FlightReservations\src\main\bin\Debug\netcoreapp2.1\main.pdb
+C:\Users\jcortes\Desktop\FlightReservations\src\main\bin\Debug\netcoreapp2.1\FlightReservationLibrary.dll
+C:\Users\jcortes\Desktop\FlightReservations\src\main\bin\Debug\netcoreapp2.1\FlightReservationLibrary.pdb
+C:\Users\jcortes\Desktop\FlightReservations\src\main\obj\Debug\netcoreapp2.1\main.csprojAssemblyReference.cache
+C:\Users\jcortes\Desktop\FlightReservations\src\main\obj\Debug\netcoreapp2.1\main.csproj.CoreCompileInputs.cache
+C:\Users\jcortes\Desktop\FlightReservations\src\main\obj\Debug\netcoreapp2.1\main.AssemblyInfoInputs.cache
+C:\Users\jcortes\Desktop\FlightReservations\src\main\obj\Debug\netcoreapp2.1\main.AssemblyInfo.cs
+C:\Users\jcortes\Desktop\FlightReservations\src\main\obj\Debug\netcoreapp2.1\main.csproj.CopyComplete
+C:\Users\jcortes\Desktop\FlightReservations\src\main\obj\Debug\netcoreapp2.1\main.dll
+C:\Users\jcortes\Desktop\FlightReservations\src\main\obj\Debug\netcoreapp2.1\main.pdb
