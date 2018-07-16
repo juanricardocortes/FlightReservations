@@ -83,7 +83,7 @@ namespace main {
         public void GetReservationsMenuInput (string input) {
             if (Validation.GetInstance.IsValidNumberInput (input, 3)) {
                 if (input == "1") {
-
+                    Views.GetInstance.DisplayReserveFlightFormA ();
                 } else if (input == "2") {
 
                 } else if (input == "3") {
@@ -91,6 +91,14 @@ namespace main {
                 }
             } else {
                 Views.GetInstance.DisplayMainMenu ();
+            }
+        }
+
+        public void GetReservationsFormAInput (ReservationModel Reservation) {
+            if (Services.GetInstance.FlightExists (Reservation)) {
+                
+            } else {
+                Views.GetInstance.DisplayReservationMenu ();
             }
         }
     }

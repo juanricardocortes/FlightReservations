@@ -41,13 +41,13 @@ namespace main {
             Controllers.GetInstance.GetMaintainanceMenuInput (Console.ReadLine ());
         }
         public void DisplayAddFlightForm () {
-            FlightModel flight = new FlightModel ();
+            FlightModel Flight = new FlightModel ();
             Console.Clear ();
 
             while (true) {
                 Console.Write ("\nEnter airline code: ");
-                flight.strAirlineCode = Console.ReadLine ();
-                if (Validation.GetInstance.IsValidAirlineCode (flight.strAirlineCode)) {
+                Flight.strAirlineCode = Console.ReadLine ();
+                if (Validation.GetInstance.IsValidAirlineCode (Flight.strAirlineCode)) {
                     break;
                 } else {
                     Console.WriteLine ("*Invalid airline code");
@@ -56,8 +56,8 @@ namespace main {
 
             while (true) {
                 Console.Write ("\nEnter flight number: ");
-                flight.strFlightNumber = Console.ReadLine ();
-                if (Validation.GetInstance.IsValidFlightNumber (flight.strFlightNumber)) {
+                Flight.strFlightNumber = Console.ReadLine ();
+                if (Validation.GetInstance.IsValidFlightNumber (Flight.strFlightNumber)) {
                     break;
                 } else {
                     Console.WriteLine ("*Invalid flight number");
@@ -66,8 +66,8 @@ namespace main {
 
             while (true) {
                 Console.Write ("\nEnter arrival station: ");
-                flight.strArrivalStation = Console.ReadLine ();
-                if (Validation.GetInstance.IsValidArrivalDepartureStation (flight.strArrivalStation)) {
+                Flight.strArrivalStation = Console.ReadLine ();
+                if (Validation.GetInstance.IsValidArrivalDepartureStation (Flight.strArrivalStation)) {
                     break;
                 } else {
                     Console.WriteLine ("*Invalid arrival station");
@@ -76,8 +76,8 @@ namespace main {
 
             while (true) {
                 Console.Write ("\nEnter departure station: ");
-                flight.strDepartureStation = Console.ReadLine ();
-                if (Validation.GetInstance.IsValidArrivalDepartureStation (flight.strDepartureStation)) {
+                Flight.strDepartureStation = Console.ReadLine ();
+                if (Validation.GetInstance.IsValidArrivalDepartureStation (Flight.strDepartureStation)) {
                     break;
                 } else {
                     Console.WriteLine ("*Invalid departure station");
@@ -86,8 +86,8 @@ namespace main {
 
             while (true) {
                 Console.Write ("\nEnter scheduled time of departure: ");
-                flight.strSTD = Console.ReadLine ();
-                if (Validation.GetInstance.IsValidDepartureTime (flight.strSTD)) {
+                Flight.strSTD = Console.ReadLine ();
+                if (Validation.GetInstance.IsValidDepartureTime (Flight.strSTD)) {
                     break;
                 } else {
                     Console.WriteLine ("*Invalid departure time");
@@ -96,15 +96,15 @@ namespace main {
 
             while (true) {
                 Console.Write ("\nEnter scheduled time of arrival: ");
-                flight.strSTA = Console.ReadLine ();
-                if (Validation.GetInstance.IsValidArrivalTime (flight.strSTA, flight.strSTD)) {
+                Flight.strSTA = Console.ReadLine ();
+                if (Validation.GetInstance.IsValidArrivalTime (Flight.strSTA, Flight.strSTD)) {
                     break;
                 } else {
                     Console.WriteLine ("*Invalid arrival time");
                 }
             }
 
-            Controllers.GetInstance.GetAddFlightForm (flight);
+            Controllers.GetInstance.GetAddFlightForm (Flight);
 
         }
         public void DisplaySearchFlightMenu () {
@@ -157,6 +157,43 @@ namespace main {
             Console.Write ("Choose one of the options: ");
             Controllers.GetInstance.GetReservationsMenuInput (Console.ReadLine ());
         }
+        public void DisplayReserveFlightFormA () {
+            Console.Clear ();
+            ReservationModel Reservation = new ReservationModel ();
 
+            while (true) {
+                Console.Write ("\nEnter airline code: ");
+                Reservation.strAirlineCode = Console.ReadLine ();
+                if (Validation.GetInstance.IsValidAirlineCode (Reservation.strAirlineCode)) {
+                    break;
+                } else {
+                    Console.Write ("\n*Invalid airline code.");
+                }
+            }
+
+            while (true) {
+                Console.Write ("\nEnter flight number: ");
+                Reservation.strFlightNumber = Console.ReadLine ();
+                if (Validation.GetInstance.IsValidFlightNumber (Reservation.strFlightNumber)) {
+                    break;
+                } else {
+                    Console.Write ("\n*Invalid flight number.");
+                }
+            }
+
+            Controllers.GetInstance.GetReservationsFormAInput (Reservation);
+        }
+        public void DisplayReserveFlightFormB (ReservationModel Reservation) {
+            Console.Clear ();
+            while (true) {
+                Console.Write ("\nEnter flight date: ");
+                Reservation.strFlightDate = Console.ReadLine ();
+                if(true) {
+                    break;
+                } else {
+                    Console.Write("\n*Invalid date.");
+                }
+            }
+        }
     }
 }
