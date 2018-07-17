@@ -20,9 +20,9 @@ namespace main {
                 if (input == "1") {
                     Views.GetInstance.DisplayReserveFlightFormA ();
                 } else if (input == "2") {
-                    // get service
+                    Views.GetInstance.DisplayFlightReservations(FlightReservationsServices.GetInstance.GetFlightReservations());
                 } else if (input == "3") {
-
+                    Views.GetInstance.DisplaySearchByReservationByPNRForm();
                 }
             } else {
                 Views.GetInstance.DisplayMainMenu ();
@@ -39,7 +39,10 @@ namespace main {
             }
         }
         public void GetPassenger (ReservationModel Reservation) {
-            Views.GetInstance.DisplayReservedPassengerDetails(FlightReservationsServices.GetInstance.AddReservation (Reservation));
+            Views.GetInstance.DisplaySingleReservation(FlightReservationsServices.GetInstance.AddReservation (Reservation));
+        }
+        public void GetSearchByPNRInput (string PNR) {
+            Views.GetInstance.DisplaySingleReservation(FlightReservationsServices.GetInstance.SearchFlightReservationByPNR(PNR));
         }
     }
 }

@@ -52,7 +52,6 @@ namespace main {
                 return false;
             }
         }
-
         public bool IsValidFlightNumber (string FlightNumber) {
             if (numbers.IsMatch (FlightNumber) && FlightNumber.Length == 4) {
                 return true;
@@ -74,17 +73,14 @@ namespace main {
                 return false;
             }
         }
-
         public bool IsValidDepartureTime (string DepartureTime) {
             return TimeSpan.TryParse (DepartureTime, out var dummyOutput);
         }
-
         public bool IsValidArrivalTime (string ArrivalTime, string DepartureTime) {
             var tArrivalTime = TimeSpan.Parse (ArrivalTime);
             var tDepartureTime = TimeSpan.Parse (DepartureTime);
             return tArrivalTime > tDepartureTime;
         }
-
         public bool IsNotPastDate (string FlightDate) {
             try {
                 DateTime parsedDate = DateTime.Parse (FlightDate);

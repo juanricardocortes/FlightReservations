@@ -200,7 +200,7 @@ namespace main {
                 }
                 string FlightIndex;
                 while (true) {
-                    Console.WriteLine ("Choose a flight to book: ");
+                    Console.Write ("\nChoose a flight to book: ");
                     FlightIndex = Console.ReadLine ();
                     if (Validation.GetInstance.IsValidNumberInput (FlightIndex, MatchingFlights.Count)) {
                         break;
@@ -283,14 +283,16 @@ namespace main {
                     Console.WriteLine ("Last Name: {0}", Reservation.strLastName);
                     Console.WriteLine ("Birthday: {0}", Reservation.strBirthday);
                     Console.WriteLine ("Age: {0}", Reservation.strAge);
-                    Console.WriteLine ("--------------------------------------------");
                 }
+                Console.WriteLine ("Press enter to continue.......");
+                Console.ReadLine ();
             } else {
                 Console.WriteLine ("No flights found!");
+                Console.WriteLine ("Press enter to continue.......");
+                Console.ReadLine ();
             }
         }
-
-        public void DisplayReservedPassengerDetails (ReservationModel Reservation) {
+        public void DisplaySingleReservation (ReservationModel Reservation) {
             Console.WriteLine ("--------------------------------------------");
             Console.WriteLine ("Reservation Details");
             Console.WriteLine ("Airline Code: {0}", Reservation.strAirlineCode);
@@ -308,6 +310,11 @@ namespace main {
             Console.WriteLine ("--------------------------------------------");
             Console.WriteLine ("Press enter to continue.......");
             Console.ReadLine ();
+        }
+        public void DisplaySearchByReservationByPNRForm () {
+            Console.Clear();
+            Console.Write("\nEnter PNR: "); 
+            FlightReservationsController.GetInstance.GetSearchByPNRInput(Console.ReadLine());
         }
     }
 }

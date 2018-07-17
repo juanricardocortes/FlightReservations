@@ -29,5 +29,8 @@ namespace main {
         public List<ReservationModel> GetFlightReservations () {
             return FlightReservations.GetInstance.GetFlightReservations();
         }
+        public ReservationModel SearchFlightReservationByPNR (string PNR) {
+            return FlightReservations.GetInstance.SearchByPNR(PNR, MainMenuServices.ListOfReservations);
+        }
     }
 }

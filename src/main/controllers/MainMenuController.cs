@@ -15,7 +15,6 @@ namespace main {
         public void InitializeConnections () {
             MainMenuServices.GetInstance.GetData ();
         }
-
         public void GetMainMenuInput (string input) {
             if (Validation.GetInstance.IsValidNumberInput (input, 2)) {
                 if (input == "1") {
