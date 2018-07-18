@@ -15,11 +15,16 @@ namespace main {
                 return ServicesInstance;
             }
         }
-
         // service methods
         public void GetData () {
             ListOfFlights = FlightMaintenance.GetInstance.GetAllFlights ();
-            ListOfReservations = FlightReservations.GetInstance.GetFlightReservations();
+            ListOfReservations = FlightReservations.GetInstance.GetFlightReservations ();
+        }
+        public void GetAllFlights () {
+            ListOfFlights = FlightMaintenance.GetInstance.GetAllFlights ();
+        }
+        public void GetAllReserverations () {
+            ListOfReservations = FlightReservations.GetInstance.GetFlightReservations ();
         }
 
     }

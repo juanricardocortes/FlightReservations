@@ -38,11 +38,16 @@ namespace main {
                 Views.GetInstance.DisplayReservationMenu ();
             }
         }
-        public void GetPassenger (ReservationModel Reservation) {
-            Views.GetInstance.DisplaySingleReservation(FlightReservationsServices.GetInstance.AddReservation (Reservation));
+        public void GetReservationsFormBInput(List<ReservationModel> FlightReservations) {
+            Views.GetInstance.DisplayConfirmReservations(FlightReservationsServices.GetInstance.GetAgeOfPassengers(FlightReservations));
+        }
+        public void GetReservationConfirmation (string input, List<ReservationModel> FlightReservations) {
+            if(input == "y" || input == "Y") {
+                Views.GetInstance.DisplayFlightReservations(FlightReservationsServices.GetInstance.AddFlightReservations(FlightReservations));
+            } 
         }
         public void GetSearchByPNRInput (string PNR) {
-            Views.GetInstance.DisplaySingleReservation(FlightReservationsServices.GetInstance.SearchFlightReservationByPNR(PNR));
+            Views.GetInstance.DisplayFlightReservations(FlightReservationsServices.GetInstance.SearchFlightReservationByPNR(PNR));
         }
     }
 }

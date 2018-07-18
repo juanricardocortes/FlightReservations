@@ -12,8 +12,7 @@ namespace main {
                 Views.GetInstance.DisplayMainMenu ();
             }
         }
-
-        // Singleton
+        // singleton
         private static Views ViewInstance = null;
         public static Views GetInstance {
             get {
@@ -24,8 +23,7 @@ namespace main {
             }
         }
         private Views () { }
-
-        // Display Methods
+        // display methods
         public void DisplayMainMenu () {
             Console.Clear ();
             Console.WriteLine ("[1] Flight Maintenance");
@@ -43,7 +41,6 @@ namespace main {
         public void DisplayAddFlightForm () {
             FlightModel Flight = new FlightModel ();
             Console.Clear ();
-
             while (true) {
                 Console.Write ("\nEnter airline code: ");
                 Flight.strAirlineCode = Console.ReadLine ();
@@ -145,8 +142,12 @@ namespace main {
                     Console.WriteLine ("Scheduled Time of Departure: {0}", Flight.strSTD);
                     Console.WriteLine ("-----------------------------------------------");
                 }
+                Console.WriteLine ("Press enter to continue..........");
+                Console.ReadLine ();
             } else {
                 Console.WriteLine ("No flights found!");
+                Console.WriteLine ("Press enter to continue..........");
+                Console.ReadLine ();
             }
         }
         public void DisplayReservationMenu () {
@@ -225,15 +226,18 @@ namespace main {
                     Console.Write ("\n*Invalid date.");
                 }
             }
+            Reservation.strPNR = "NO PNR ISSUED YET";
             while (true) {
                 Console.Write ("\nEnter number of passengers: ");
                 string NumberOfPassengers = Console.ReadLine ();
                 if (Validation.GetInstance.IsValidNumberInput (NumberOfPassengers, 5)) {
+                    List<ReservationModel> FlightReservations = new List<ReservationModel> ();
                     for (int i = 1; i <= Convert.ToInt32 (NumberOfPassengers); i++) {
+                        ReservationModel ClonedReservation = (ReservationModel) Reservation.Clone ();
                         while (true) {
                             Console.Write ("\nEnter first name for passenger {0}: ", i);
-                            Reservation.strFirstName = Console.ReadLine ();
-                            if (Validation.GetInstance.IsValidName (Reservation.strFirstName)) {
+                            ClonedReservation.strFirstName = Console.ReadLine ();
+                            if (Validation.GetInstance.IsValidName (ClonedReservation.strFirstName)) {
                                 break;
                             } else {
                                 Console.Write ("\n*Invalid first name.");
@@ -241,8 +245,8 @@ namespace main {
                         }
                         while (true) {
                             Console.Write ("\nEnter last name for passenger {0}: ", i);
-                            Reservation.strLastName = Console.ReadLine ();
-                            if (Validation.GetInstance.IsValidName (Reservation.strLastName)) {
+                            ClonedReservation.strLastName = Console.ReadLine ();
+                            if (Validation.GetInstance.IsValidName (ClonedReservation.strLastName)) {
                                 break;
                             } else {
                                 Console.Write ("\n*Invalid last name.");
@@ -250,26 +254,48 @@ namespace main {
                         }
                         while (true) {
                             Console.Write ("\nEnter birthday for passenger {0}: ", i);
-                            Reservation.strBirthday = Console.ReadLine ();
-                            if (Validation.GetInstance.IsNotFutureDate (Reservation.strBirthday)) {
+                            ClonedReservation.strBirthday = Console.ReadLine ();
+                            if (Validation.GetInstance.IsNotFutureDate (ClonedReservation.strBirthday)) {
                                 break;
                             } else {
                                 Console.Write ("\n*Invalid birthday.");
                             }
                         }
-                        FlightReservationsController.GetInstance.GetPassenger (Reservation);
+                        FlightReservations.Add (ClonedReservation);
                     }
+                    FlightReservationsController.GetInstance.GetReservationsFormBInput (FlightReservations);
                     break;
                 } else {
                     Console.Write ("\nInvalid number of passengers");
                 }
             }
         }
+        public void DisplayConfirmReservations (List<ReservationModel> FlightReservations) {
+            Console.Clear ();
+            foreach (ReservationModel Reservation in FlightReservations) {
+                Console.WriteLine ("Reservation Details");
+                Console.WriteLine ("Airline Code: {0}", Reservation.strAirlineCode);
+                Console.WriteLine ("Flight Number: {0}", Reservation.strFlightNumber);
+                Console.WriteLine ("Arrival Station: {0}", Reservation.strArrivalStation);
+                Console.WriteLine ("Departure Station: {0}", Reservation.strDepartureStation);
+                Console.WriteLine ("Scheduled Time of Arrival: {0}", Reservation.strSTA);
+                Console.WriteLine ("Scheduled Time of Departure: {0}", Reservation.strSTD);
+                Console.WriteLine ("Flight Date: {0}", Reservation.strFlightDate);
+                Console.WriteLine ("PNR: {0}", Reservation.strPNR);
+                Console.WriteLine ("First Name: {0}", Reservation.strFirstName);
+                Console.WriteLine ("Last Name: {0}", Reservation.strLastName);
+                Console.WriteLine ("Birthday: {0}", Reservation.strBirthday);
+                Console.WriteLine ("Age: {0}", Reservation.strAge);
+                Console.WriteLine ("--------------------------------------------");
+            }
+            Console.Write("\nCONFIRM RESERVATION? [y/n]: ");
+            string input = Console.ReadLine ();
+            FlightReservationsController.GetInstance.GetReservationConfirmation(input, FlightReservations);
+        }
         public void DisplayFlightReservations (List<ReservationModel> FlightReservations) {
             Console.Clear ();
             if (FlightReservations.Count > 0) {
                 foreach (ReservationModel Reservation in FlightReservations) {
-                    Console.WriteLine ("--------------------------------------------");
                     Console.WriteLine ("Reservation Details");
                     Console.WriteLine ("Airline Code: {0}", Reservation.strAirlineCode);
                     Console.WriteLine ("Flight Number: {0}", Reservation.strFlightNumber);
@@ -283,6 +309,7 @@ namespace main {
                     Console.WriteLine ("Last Name: {0}", Reservation.strLastName);
                     Console.WriteLine ("Birthday: {0}", Reservation.strBirthday);
                     Console.WriteLine ("Age: {0}", Reservation.strAge);
+                    Console.WriteLine ("--------------------------------------------");
                 }
                 Console.WriteLine ("Press enter to continue.......");
                 Console.ReadLine ();
@@ -292,29 +319,10 @@ namespace main {
                 Console.ReadLine ();
             }
         }
-        public void DisplaySingleReservation (ReservationModel Reservation) {
-            Console.WriteLine ("--------------------------------------------");
-            Console.WriteLine ("Reservation Details");
-            Console.WriteLine ("Airline Code: {0}", Reservation.strAirlineCode);
-            Console.WriteLine ("Flight Number: {0}", Reservation.strFlightNumber);
-            Console.WriteLine ("Arrival Station: {0}", Reservation.strArrivalStation);
-            Console.WriteLine ("Departure Station: {0}", Reservation.strDepartureStation);
-            Console.WriteLine ("Scheduled Time of Arrival: {0}", Reservation.strSTA);
-            Console.WriteLine ("Scheduled Time of Departure: {0}", Reservation.strSTD);
-            Console.WriteLine ("Flight Date: {0}", Reservation.strFlightDate);
-            Console.WriteLine ("PNR: {0}", Reservation.strPNR);
-            Console.WriteLine ("First Name: {0}", Reservation.strFirstName);
-            Console.WriteLine ("Last Name: {0}", Reservation.strLastName);
-            Console.WriteLine ("Birthday: {0}", Reservation.strBirthday);
-            Console.WriteLine ("Age: {0}", Reservation.strAge);
-            Console.WriteLine ("--------------------------------------------");
-            Console.WriteLine ("Press enter to continue.......");
-            Console.ReadLine ();
-        }
         public void DisplaySearchByReservationByPNRForm () {
-            Console.Clear();
-            Console.Write("\nEnter PNR: "); 
-            FlightReservationsController.GetInstance.GetSearchByPNRInput(Console.ReadLine());
+            Console.Clear ();
+            Console.Write ("\nEnter PNR: ");
+            FlightReservationsController.GetInstance.GetSearchByPNRInput (Console.ReadLine ());
         }
     }
 }

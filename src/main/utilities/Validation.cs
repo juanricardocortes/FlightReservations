@@ -5,7 +5,7 @@ namespace main {
     public class Validation {
 
         //Regex 
-        Regex alphanumeric = new Regex ("^[a-zA-Z0-9]*$");
+        Regex alphanumeric = new Regex ("^[A-Z0-9]*$");
         Regex letters = new Regex ("^[a-zA-Z]+$");
         Regex numbers = new Regex ("^[0-9]+$");
 
@@ -38,7 +38,8 @@ namespace main {
             }
         }
         public bool IsValidAirlineCode (string AirlineCode) {
-            if (alphanumeric.IsMatch (AirlineCode) && AirlineCode.Length == 2) {
+            const int AirlinCodeLength = 2;
+            if (alphanumeric.IsMatch (AirlineCode) && AirlineCode.Length == AirlinCodeLength) {
                 if (numbers.IsMatch (AirlineCode[0].ToString ())) {
                     if (numbers.IsMatch (AirlineCode[1].ToString ())) {
                         return false;
@@ -53,7 +54,8 @@ namespace main {
             }
         }
         public bool IsValidFlightNumber (string FlightNumber) {
-            if (numbers.IsMatch (FlightNumber) && FlightNumber.Length == 4) {
+            const int FlightNumberLength = 4;
+            if (numbers.IsMatch (FlightNumber) && FlightNumber.Length == FlightNumberLength) {
                 return true;
             } else {
                 return false;
@@ -66,8 +68,9 @@ namespace main {
                 return false;
             }
         }
-        public bool IsValidArrivalDepartureStation (string ArrivalStation) {
-            if (alphanumeric.IsMatch (ArrivalStation) && ArrivalStation.Length == 3) {
+        public bool IsValidArrivalDepartureStation (string Station) {
+            const int StationLength = 3;
+            if (alphanumeric.IsMatch (Station) && Station.Length == StationLength) {
                 return true;
             } else {
                 return false;

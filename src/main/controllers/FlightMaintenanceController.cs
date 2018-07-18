@@ -20,14 +20,14 @@ namespace main {
         // controller methods
         public void GetAddFlightForm (FlightModel flight) {
             FlightMaintenanceServices.GetInstance.AddFlight (flight);
-            MainMenuServices.GetInstance.GetData ();
+            MainMenuServices.GetInstance.GetAllFlights ();
         }
         public void GetSearchFlightMenuInput (string input) {
             if (Validation.GetInstance.IsValidNumberInput (input, 3)) {
                 if (input == "1") {
-                    Views.GetInstance.DisplaySearchFlightByACForm ();
-                } else if (input == "2") {
                     Views.GetInstance.DisplaySearchFlightByFNForm ();
+                } else if (input == "2") {
+                    Views.GetInstance.DisplaySearchFlightByACForm ();
                 } else if (input == "3") {
                     Views.GetInstance.DisplaySearchFlightByODForm ();
                 }
