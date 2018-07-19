@@ -17,9 +17,12 @@ namespace main {
         private FlightMaintenanceServices () { }
 
         // service methods
-        public void AddFlight (FlightModel flight) {
+        public FlightModel AddFlight (FlightModel flight) {
             if (FlightMaintenance.GetInstance.IsUniqueFlight (flight, MainMenuServices.ListOfFlights)) {
                 FlightMaintenance.GetInstance.AddFlight (flight);
+                return flight;
+            } else {
+                return null;
             }
         }
 

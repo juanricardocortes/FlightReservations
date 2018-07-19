@@ -6,6 +6,7 @@ namespace main {
     public class FlightMaintenanceController {
 
         // singleton
+
         private static FlightMaintenanceController ControllerInstance = null;
         public static FlightMaintenanceController GetInstance {
             get {
@@ -16,10 +17,10 @@ namespace main {
             }
         }
         private FlightMaintenanceController () { }
-       
+
         // controller methods
         public void GetAddFlightForm (FlightModel flight) {
-            FlightMaintenanceServices.GetInstance.AddFlight (flight);
+            Views.GetInstance.DisplayFlightAdded (FlightMaintenanceServices.GetInstance.AddFlight (flight));
             MainMenuServices.GetInstance.GetAllFlights ();
         }
         public void GetSearchFlightMenuInput (string input) {

@@ -1,5 +1,6 @@
 using System;
 using System.Text.RegularExpressions;
+using FlightReservationLibrary;
 
 namespace main {
     public class Validation {
@@ -8,6 +9,8 @@ namespace main {
         Regex alphanumeric = new Regex ("^[A-Z0-9]*$");
         Regex letters = new Regex ("^[a-zA-Z]+$");
         Regex numbers = new Regex ("^[0-9]+$");
+        Regex time = new Regex("^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$");
+        Regex date = new Regex("^([0]\\d|[1][0-2])\\/([0-2]\\d|[3][0-1])\\/([2][01]|[1][6-9])\\d{2}(\\s([0-1]\\d|[2][0-3])(\\:[0-5]\\d){1,2})?$");
 
         // Singleton
         private static Validation ValidationInstance = null;
@@ -77,25 +80,25 @@ namespace main {
             }
         }
         public bool IsValidDepartureTime (string DepartureTime) {
-            return TimeSpan.TryParse (DepartureTime, out var dummyOutput);
+            return time.IsMatch(DepartureTime);
         }
         public bool IsValidArrivalTime (string ArrivalTime, string DepartureTime) {
             var tArrivalTime = TimeSpan.Parse (ArrivalTime);
             var tDepartureTime = TimeSpan.Parse (DepartureTime);
-            return tArrivalTime > tDepartureTime;
+            return (tArrivalTime > tDepartureTime) && time.IsMatch(ArrivalTime);
         }
         public bool IsNotPastDate (string FlightDate) {
             try {
                 DateTime parsedDate = DateTime.Parse (FlightDate);
-                return parsedDate > DateTime.Now;
+                return (parsedDate > DateTime.Now) && date.IsMatch(FlightDate);
             } catch (Exception) {
                 return false;
             }
         }
-        public bool IsNotFutureDate (string FlightDate) {
+        public bool IsNotFutureDate (string Birthday) {
             try {
-                DateTime parsedDate = DateTime.Parse (FlightDate);
-                return parsedDate < DateTime.Now;
+                DateTime parsedDate = DateTime.Parse (Birthday);
+                return (parsedDate < DateTime.Now) && date.IsMatch(Birthday);
             } catch (Exception) {
                 return false;
             }

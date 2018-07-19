@@ -150,6 +150,26 @@ namespace main {
                 Console.ReadLine ();
             }
         }
+        public void DisplayFlightAdded (FlightModel Flight) {
+            Console.Clear ();
+            if (Flight != null) {
+                Console.WriteLine ("Flight Details");
+                Console.WriteLine ("Airline Code: {0}", Flight.strAirlineCode);
+                Console.WriteLine ("Flight Number: {0}", Flight.strFlightNumber);
+                Console.WriteLine ("Arrival Station: {0}", Flight.strArrivalStation);
+                Console.WriteLine ("Departure Station: {0}", Flight.strDepartureStation);
+                Console.WriteLine ("Scheduled Time of Arrival: {0}", Flight.strSTA);
+                Console.WriteLine ("Scheduled Time of Departure: {0}", Flight.strSTD);
+                Console.WriteLine ("-----------------------------------------------");
+                Console.Write ("\nPress enter to continue.......");
+                Console.ReadLine ();
+            } else {
+                Console.WriteLine ("Flight not added.");
+                Console.WriteLine ("-----------------------------------------------");
+                Console.Write ("\nPress enter to continue.......");
+                Console.ReadLine ();
+            }
+        }
         public void DisplayReservationMenu () {
             Console.Clear ();
             Console.WriteLine ("[1] Create a reservation");
@@ -288,9 +308,9 @@ namespace main {
                 Console.WriteLine ("Age: {0}", Reservation.strAge);
                 Console.WriteLine ("--------------------------------------------");
             }
-            Console.Write("\nCONFIRM RESERVATION? [y/n]: ");
+            Console.Write ("\nCONFIRM RESERVATION? [y/n]: ");
             string input = Console.ReadLine ();
-            FlightReservationsController.GetInstance.GetReservationConfirmation(input, FlightReservations);
+            FlightReservationsController.GetInstance.GetReservationConfirmation (input, FlightReservations);
         }
         public void DisplayFlightReservations (List<ReservationModel> FlightReservations) {
             Console.Clear ();
